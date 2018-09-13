@@ -13,8 +13,7 @@ final class DetailAssembly {
 	private let navigationController: UINavigationController
 	private let webServiceAssembly: WebServiceAssembly
 
-	private(set) lazy var pushDetailNavigator = PushDetailNavigator(navigationController: navigationController,
-																	detailViewControllerProvider: self)
+	private(set) lazy var pushDetailNavigator = PushDetailNavigator(navigationController: navigationController, detailViewControllerProvider: self)
 
 	init(imageLoadingAssembly: ImageLoadingAssembly,
 	     navigationController: UINavigationController,
@@ -33,7 +32,7 @@ final class DetailAssembly {
 	}
 
 	func moviePresenter(identifier: Int64) -> DetailPresenter {
-		return MoviePresenter(repository: movieRepository(), identifier: identifier)
+    return MoviePresenter(detailNavigator: pushDetailNavigator, repository: movieRepository(), identifier: identifier)
 	}
   
   func showPresenter(identifier: Int64) -> DetailPresenter {
